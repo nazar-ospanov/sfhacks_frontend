@@ -1,115 +1,38 @@
-import React, { useState } from 'react';
-import './App.css'; // Make sure this import exists if you're using a separate CSS file.
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './Home';
+import PageOne from './PageOne';
+import PageTwo from './PageOne';
+import './App.css';
 
 function App() {
-  const [websiteUrl, setWebsiteUrl] = useState('');
-  const [score, setScore] = useState(null);
-
-  const handleScan = () => {
-    if (!websiteUrl.trim()) {
-      alert('Please enter a valid URL.');
-      return;
-    }
-    
-    // Fetch the score from the endpoint
-    fetch(`http://localhost:3000/mongo/${websiteUrl}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setScore(data.badge_level);
-      })
-      .catch(error => {
-        console.error('Error fetching score:', error);
-        alert('Failed to fetch accessibility score. Please try again.');
-      });
-  };
-
-  const handleViewCertificate = () => {
-    // Replace with real certificate view/generation.
-    alert('This would display a secure certificate.');
-  };
-
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>Accessibility Rating</h1>
-      <p style={styles.description}>
-        Evaluate the accessibility of your website and obtain a certificate of compliance.
-      </p>
-      <div style={styles.formGroup}>
-        <label htmlFor="websiteUrl" style={styles.label}>
-          Website URL
-        </label>
-        <input
-          id="websiteUrl"
-          type="text"
-          placeholder="https://www.example.com"
-          value={websiteUrl}
-          onChange={(e) => setWebsiteUrl(e.target.value)}
-          style={styles.input}
-        />
+    <Router>
+      <div style={styles.navbar}>
+        <Link style={styles.navLink} to="/">Home</Link>
+        <Link style={styles.navLink} to="/page-one">Page One</Link>
+        <Link style={styles.navLink} to="/page-two">Page Two</Link>
       </div>
-      <button onClick={handleScan} style={styles.button}>
-        Scan Website
-      </button>
-      {score !== null && (
-        <>
-          <div style={styles.score}>Your website scored: {score}</div>
-          <button onClick={handleViewCertificate} style={styles.button}>
-            View Certificate
-          </button>
-        </>
-      )}
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/page-one" element={<PageOne />} />
+        <Route path="/page-two" element={<PageTwo />} />
+      </Routes>
+    </Router>
   );
 }
 
 const styles = {
-  container: {
-    maxWidth: '500px',
-    margin: '2rem auto',
-    padding: '2rem',
-    borderRadius: '6px',
-    background: '#fff',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    fontFamily: 'sans-serif',
-  },
-  heading: {
-    marginTop: 0,
-  },
-  description: {
-    marginBottom: '1rem',
-  },
-  formGroup: {
-    marginBottom: '1rem',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '0.5rem',
-    fontWeight: 'bold',
-  },
-  input: {
-    width: '100%',
-    padding: '0.5rem',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    fontSize: '1rem',
-  },
-  button: {
-    marginTop: '1rem',
-    padding: '0.75rem 1.5rem',
-    border: 'none',
-    borderRadius: '4px',
+  navbar: {
     backgroundColor: '#007bff',
-    color: '#fff',
-    cursor: 'pointer',
-    fontSize: '1rem',
+    padding: '1rem',
+    display: 'flex',
+    gap: '1rem',
   },
-  score: {
-    marginTop: '1rem',
+  navLink: {
+    color: '#fff',
+    textDecoration: 'none',
     fontWeight: 'bold',
   },
 };
