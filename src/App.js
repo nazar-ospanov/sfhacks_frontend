@@ -10,9 +10,22 @@ function App() {
       alert('Please enter a valid URL.');
       return;
     }
-    // Replace with real accessibility scan logic.
-    const randomScore = Math.floor(Math.random() * 101);
-    setScore(randomScore);
+    
+    // Fetch the score from the endpoint
+    fetch(`http://localhost:3000/mongo/${websiteUrl}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setScore(data.badge_level);
+      })
+      .catch(error => {
+        console.error('Error fetching score:', error);
+        alert('Failed to fetch accessibility score. Please try again.');
+      });
   };
 
   const handleViewCertificate = () => {
