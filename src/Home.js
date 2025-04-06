@@ -13,7 +13,13 @@ function Home() {
     }
     
     // Fetch the score from your backend endpoint.
-    fetch(`http://localhost:3000/mongo/${websiteUrl}`)
+    fetch('http://localhost:3000/mongo/get_or_create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url: websiteUrl }),
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
