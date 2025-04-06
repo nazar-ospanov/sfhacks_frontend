@@ -6,12 +6,15 @@ function Home() {
   const [websiteUrl, setWebsiteUrl] = useState('');
   const [score, setScore] = useState(null);
   const [suggestions, setSuggestions] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleScan = () => {
     if (!websiteUrl.trim()) {
       alert('Please enter a valid URL.');
       return;
     }
+    
+    setIsLoading(true);
     
     // Fetch the score from your backend endpoint.
     fetch('http://localhost:3000/mongo/get_or_create', {
@@ -30,10 +33,12 @@ function Home() {
       .then(data => {
         setScore(data.badge_level);
         setSuggestions(data.improvement_suggestions);
+        setIsLoading(false);
       })
       .catch(error => {
         console.error('Error fetching score:', error);
         alert('Failed to fetch accessibility score. Please try again.');
+        setIsLoading(false);
       });
   };
 
@@ -61,10 +66,18 @@ function Home() {
           style={styles.input}
         />
       </div>
-      <button onClick={handleScan} style={styles.button}>
-        Scan Website
+      <button onClick={handleScan} style={styles.button} disabled={isLoading}>
+        {isLoading ? 'Scanning...' : 'Scan Website'}
       </button>
-      {score !== null && (
+      
+      {isLoading && (
+        <div style={styles.loadingSpinner}>
+          <div style={styles.spinner}></div>
+          <p>Analyzing website accessibility...</p>
+        </div>
+      )}
+      
+      {!isLoading && score !== null && (
         <>
           <div style={styles.score}>Your website scored: {score}</div>
           <button onClick={handleViewCertificate} style={styles.button}>
@@ -72,7 +85,7 @@ function Home() {
           </button>
         </>
       )}
-      {suggestions && (
+      {!isLoading && suggestions && (
         <div style={styles.suggestions}>
           <h3>Improvement Suggestions:</h3>
           <p>{suggestions}</p>
@@ -127,6 +140,41 @@ const styles = {
     marginTop: '1rem',
     fontWeight: 'bold',
   },
+  loadingSpinner: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '2rem',
+  },
+  spinner: {
+    width: '40px',
+    height: '40px',
+    border: '4px solid rgba(0, 123, 255, 0.3)',
+    borderTop: '4px solid #007bff',
+    borderRadius: '50%',
+    animation: 'spin 1s linear infinite',
+    '@keyframes spin': {
+      '0%': { transform: 'rotate(0deg)' },
+      '100%': { transform: 'rotate(360deg)' }
+    }
+  },
+  suggestions: {
+    marginTop: '1rem',
+  }
 };
+
+// Add the keyframes for the spinner animation
+const spinnerKeyframes = `
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+`;
+
+// Create a style element and append it to the head
+const styleElement = document.createElement('style');
+styleElement.type = 'text/css';
+styleElement.appendChild(document.createTextNode(spinnerKeyframes));
+document.head.appendChild(styleElement);
 
 export default Home;
