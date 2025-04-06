@@ -7,6 +7,7 @@ function Home() {
   const [score, setScore] = useState(null);
   const [suggestions, setSuggestions] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showCertificate, setShowCertificate] = useState(false);
 
   const handleScan = () => {
     if (!websiteUrl.trim()) {
@@ -43,8 +44,16 @@ function Home() {
   };
 
   const handleViewCertificate = () => {
-    // Replace with real certificate view/generation logic.
-    alert('This would display a secure certificate.');
+    setShowCertificate(true);
+  };
+  
+  const handleCloseCertificate = () => {
+    setShowCertificate(false);
+  };
+  
+  const generateCertificateId = () => {
+    // Generate a unique certificate ID (could be more sophisticated in production)
+    return `CERT-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
   };
 
   return (
@@ -83,6 +92,37 @@ function Home() {
           </button>
         </>
       )}
+      
+      {showCertificate && (
+        <div className="certificate-overlay">
+          <div className="certificate-modal">
+            <button className="close-button" onClick={handleCloseCertificate}>×</button>
+            <div className="certificate-content">
+              <h2>Accessibility Compliance Certificate</h2>
+              <div className="certificate-logo">
+                {/* You could add your logo here */}
+                <span role="img" aria-label="Certificate">🏆</span>
+              </div>
+              <p>This certifies that</p>
+              <h3>{websiteUrl}</h3>
+              <p>has been evaluated for web accessibility and achieved</p>
+              <div className="certificate-score">{score}</div>
+              <p>Certificate ID: {generateCertificateId()}</p>
+              <p>Issue Date: {new Date().toLocaleDateString()}</p>
+              <div className="certificate-footer">
+                <p>This certificate is valid for 12 months from the issue date.</p>
+                <button 
+                  className="download-button"
+                  onClick={() => window.print()}
+                >
+                  Download Certificate
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {!isLoading && suggestions && (
         <div className="home-suggestions">
           <h3>Improvement Suggestions:</h3>
