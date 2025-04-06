@@ -5,6 +5,7 @@ import './App.css';
 function Home() {
   const [websiteUrl, setWebsiteUrl] = useState('');
   const [score, setScore] = useState(null);
+  const [suggestions, setSuggestions] = useState('');
 
   const handleScan = () => {
     if (!websiteUrl.trim()) {
@@ -28,6 +29,7 @@ function Home() {
       })
       .then(data => {
         setScore(data.badge_level);
+        setSuggestions(data.improvement_suggestions);
       })
       .catch(error => {
         console.error('Error fetching score:', error);
@@ -69,6 +71,12 @@ function Home() {
             View Certificate
           </button>
         </>
+      )}
+      {suggestions && (
+        <div style={styles.suggestions}>
+          <h3>Improvement Suggestions:</h3>
+          <p>{suggestions}</p>
+        </div>
       )}
     </div>
   );
