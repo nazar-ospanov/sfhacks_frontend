@@ -1,6 +1,6 @@
 // src/AccessibilityPage.js
 import React from 'react';
-import './pageCss.css';
+import './App.css'; // Use the consolidated CSS (which includes accessible-mode overrides)
 
 function PageTwo() {
   return (
