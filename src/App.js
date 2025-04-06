@@ -13,7 +13,7 @@ function App() {
       <div style={styles.navbar}>
         <Link style={styles.navLink} to="/">Home</Link>
         <Link style={styles.navLink} to="/page-one">Page One</Link>
-        <Link style={styles.navLink} to="/page-two">Page Two</Link>
+        <Link style={styles.navLink} to="/page-two">Accessibility Guidelines</Link>
         <Link style={styles.navLink} to="/page-three">Page Three</Link>
       </div>
       <Routes>
