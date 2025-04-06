@@ -1,10 +1,6 @@
 // src/PageOne.js
 import React, { useState, useEffect } from 'react';
 import './App.css'; // Uses consolidated CSS with accessible-mode overrides
-import dotenv from 'dotenv';
-
-// Initialize dotenv configuration
-dotenv.config();
 
 function PageOne() {
   const [websites, setWebsites] = useState([]);
@@ -19,7 +15,7 @@ function PageOne() {
   const fetchWebsites = async () => {
     try {
       // Determine the API base URL based on environment
-      const baseUrl = process.env.NODE_ENV === 'production' 
+      const baseUrl = process.env.REACT_APP_ENV === 'production' 
         ? 'https://sfhacks-backend.fly.dev' 
         : 'http://localhost:3000';
       

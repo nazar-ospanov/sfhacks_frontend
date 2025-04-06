@@ -1,10 +1,6 @@
 // src/Home.js
 import React, { useState } from 'react';
 import './App.css';
-import dotenv from 'dotenv';
-
-// Initialize dotenv configuration
-dotenv.config();
 
 function Home() {
   const [websiteUrl, setWebsiteUrl] = useState('');
@@ -22,7 +18,7 @@ function Home() {
     setIsLoading(true);
     
     // Determine the API base URL based on environment
-    const baseUrl = process.env.NODE_ENV === 'production' 
+    const baseUrl = process.env.REACT_APP_ENV === 'production' 
       ? 'https://sfhacks-backend.fly.dev' 
       : 'http://localhost:3000';
     
