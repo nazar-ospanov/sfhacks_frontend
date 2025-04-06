@@ -18,10 +18,10 @@ function App() {
     <div className={accessibleMode ? "accessible-mode" : ""}>
       <Router>
         <header className="navbar">
-          <Link className="navLink" to="/">Home</Link>
-          <Link className="navLink" to="/page-one">Page One</Link>
-          <Link className="navLink" to="/page-two">Page Two</Link>
-          <Link className="navLink" to="/page-three">Page Three</Link>
+          <Link className="navLink" to="/">Scanner</Link>
+          <Link className="navLink" to="/page-one">Catalogue</Link>
+          <Link className="navLink" to="/page-two">Guidelines</Link>
+          <Link className="navLink" to="/page-three">About Us</Link>
           <button className="toggleButton" onClick={toggleAccessibleMode}>
             {accessibleMode ? "Standard Mode" : "Accessible Mode"}
           </button>
