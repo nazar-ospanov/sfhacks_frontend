@@ -48,45 +48,43 @@ function Home() {
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>Accessibility Rating</h1>
-      <p style={styles.description}>
+    <div className="home-container">
+      <h1 className="home-heading">Accessibility Rating</h1>
+      <p className="home-description">
         Evaluate the accessibility of your website and obtain a certificate of compliance.
       </p>
-      <div style={styles.formGroup}>
-        <label htmlFor="websiteUrl" style={styles.label}>
-          Website URL
-        </label>
+      <div className="home-form">
+        <label htmlFor="websiteUrl" className="home-label">Website URL</label>
         <input
           id="websiteUrl"
           type="text"
           placeholder="https://www.example.com"
           value={websiteUrl}
           onChange={(e) => setWebsiteUrl(e.target.value)}
-          style={styles.input}
+          className="home-input"
         />
       </div>
-      <button onClick={handleScan} style={styles.button} disabled={isLoading}>
+      <button onClick={handleScan} className="home-button" disabled={isLoading}>
         {isLoading ? 'Scanning...' : 'Scan Website'}
       </button>
       
       {isLoading && (
-        <div style={styles.loadingSpinner}>
-          <div style={styles.spinner}></div>
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
           <p>Analyzing website accessibility...</p>
         </div>
       )}
       
       {!isLoading && score !== null && (
         <>
-          <div style={styles.score}>Your website scored: {score}</div>
-          <button onClick={handleViewCertificate} style={styles.button}>
+          <div className="home-score">Your website scored: {score}</div>
+          <button onClick={handleViewCertificate} className="certificate-button">
             View Certificate
           </button>
         </>
       )}
       {!isLoading && suggestions && (
-        <div style={styles.suggestions}>
+        <div className="home-suggestions">
           <h3>Improvement Suggestions:</h3>
           <p>{suggestions}</p>
         </div>
@@ -94,87 +92,5 @@ function Home() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    maxWidth: '500px',
-    margin: '2rem auto',
-    padding: '2rem',
-    borderRadius: '6px',
-    background: '#fff',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    fontFamily: 'sans-serif',
-  },
-  heading: {
-    marginTop: 0,
-  },
-  description: {
-    marginBottom: '1rem',
-  },
-  formGroup: {
-    marginBottom: '1rem',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '0.5rem',
-    fontWeight: 'bold',
-  },
-  input: {
-    width: '100%',
-    padding: '0.5rem',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    fontSize: '1rem',
-  },
-  button: {
-    marginTop: '1rem',
-    padding: '0.75rem 1.5rem',
-    border: 'none',
-    borderRadius: '4px',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    cursor: 'pointer',
-    fontSize: '1rem',
-  },
-  score: {
-    marginTop: '1rem',
-    fontWeight: 'bold',
-  },
-  loadingSpinner: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '2rem',
-  },
-  spinner: {
-    width: '40px',
-    height: '40px',
-    border: '4px solid rgba(0, 123, 255, 0.3)',
-    borderTop: '4px solid #007bff',
-    borderRadius: '50%',
-    animation: 'spin 1s linear infinite',
-    '@keyframes spin': {
-      '0%': { transform: 'rotate(0deg)' },
-      '100%': { transform: 'rotate(360deg)' }
-    }
-  },
-  suggestions: {
-    marginTop: '1rem',
-  }
-};
-
-// Add the keyframes for the spinner animation
-const spinnerKeyframes = `
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-`;
-
-// Create a style element and append it to the head
-const styleElement = document.createElement('style');
-styleElement.type = 'text/css';
-styleElement.appendChild(document.createTextNode(spinnerKeyframes));
-document.head.appendChild(styleElement);
 
 export default Home;

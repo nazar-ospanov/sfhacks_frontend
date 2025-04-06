@@ -22,10 +22,10 @@ function App() {
             <Link to="/">AIna</Link>
           </div>
           <nav className="nav-links">
-            <Link className="navLink" to="/">Home</Link>
-            <Link className="navLink" to="/page-one">Page One</Link>
-            <Link className="navLink" to="/page-two">Page Two</Link>
-            <Link className="navLink" to="/page-three">Page Three</Link>
+            <Link className="navLink" to="/">Scanner</Link>
+            <Link className="navLink" to="/page-one">Catalogue</Link>
+            <Link className="navLink" to="/page-two">Guidelines</Link>
+            <Link className="navLink" to="/page-three">About Us</Link>
           </nav>
           <button className="toggleButton" onClick={toggleAccessibleMode}>
             {accessibleMode ? "Standard Mode" : "Accessible Mode"}

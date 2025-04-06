@@ -369,6 +369,96 @@
   color: #000 !important;
 }
 
+/* Home Page Styles */
+.home-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.home-heading {
+  margin-top: 0;
+}
+
+.home-description {
+  margin-bottom: 1rem;
+}
+
+.home-form {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.home-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.home-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.home-button, .certificate-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.home-button:hover, .certificate-button:hover {
+  background-color: #0056b3;
+}
+
+.home-score {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.home-suggestions {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+/* Accessible Mode Overrides for Home Page */
+.accessible-mode .home-container {
+  background-color: #f0f0f0 !important;
+  color: #000 !important;
+  box-shadow: none;
+}
+
+.accessible-mode .home-input {
+  border: 1px solid #000 !important;
+  color: #000;
+  background-color: #fff !important;
+}
+
+.accessible-mode .home-label {
+  color: #000;
+}
+
+.accessible-mode .home-button,
+.accessible-mode .certificate-button {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #000;
+}
+
+
 
 
 
