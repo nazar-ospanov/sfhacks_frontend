@@ -88,7 +88,7 @@ function PageOne() {
       {!loading && !error && (
         <>
           <div className="text-center">
-            <h1 className="main-title">Website Accessibility Rankings</h1>
+            <h1 className="page-heading">Website Accessibility Rankings</h1>
             <p className="page-description">
               Below is a comprehensive list of all websites that have been scanned for accessibility compliance.
             </p>
