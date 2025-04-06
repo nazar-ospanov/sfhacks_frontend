@@ -1,6 +1,10 @@
 // src/Home.js
 import React, { useState } from 'react';
 import './App.css';
+import dotenv from 'dotenv';
+
+// Initialize dotenv configuration
+dotenv.config();
 
 function Home() {
   const [websiteUrl, setWebsiteUrl] = useState('');

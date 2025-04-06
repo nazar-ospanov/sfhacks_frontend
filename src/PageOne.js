@@ -1,6 +1,10 @@
 // src/PageOne.js
 import React, { useState, useEffect } from 'react';
 import './App.css'; // Uses consolidated CSS with accessible-mode overrides
+import dotenv from 'dotenv';
+
+// Initialize dotenv configuration
+dotenv.config();
 
 function PageOne() {
   const [websites, setWebsites] = useState([]);
