@@ -54,3 +54,13 @@
   
   
   
+  
+.page-one-container {
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+  }
