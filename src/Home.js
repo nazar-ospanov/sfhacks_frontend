@@ -17,8 +17,13 @@ function Home() {
     
     setIsLoading(true);
     
+    // Determine the API base URL based on environment
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://sfhacks-backend.fly.dev' 
+      : 'http://localhost:3000';
+    
     // Fetch the score from your backend endpoint.
-    fetch('http://localhost:3000/mongo/get_or_create', {
+    fetch(`${baseUrl}/mongo/get_or_create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

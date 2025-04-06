@@ -14,7 +14,12 @@ function PageOne() {
 
   const fetchWebsites = async () => {
     try {
-      const response = await fetch('http://localhost:3000/mongo/');
+      // Determine the API base URL based on environment
+      const baseUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://sfhacks-backend.fly.dev' 
+        : 'http://localhost:3000';
+      
+      const response = await fetch(`${baseUrl}/mongo/`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
