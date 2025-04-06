@@ -3,7 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import PageOne from './PageOne';
-import PageTwo from './PageOne';
+import PageTwo from './PageTwo';
+import PageThree from './PageThree';
 import './App.css';
 
 function App() {
@@ -13,11 +14,13 @@ function App() {
         <Link style={styles.navLink} to="/">Home</Link>
         <Link style={styles.navLink} to="/page-one">Page One</Link>
         <Link style={styles.navLink} to="/page-two">Page Two</Link>
+        <Link style={styles.navLink} to="/page-three">Page Three</Link>
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/page-one" element={<PageOne />} />
         <Route path="/page-two" element={<PageTwo />} />
+        <Route path="/page-three" element={<PageThree />} />
       </Routes>
     </Router>
   );

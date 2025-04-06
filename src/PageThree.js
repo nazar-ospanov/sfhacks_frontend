@@ -2,10 +2,10 @@
 import React from 'react';
 import './pageCss.css';
 
-function PageOne() {
+function PageThree() {
   return (
     <div className="page-container">
-      <h1 className="page-heading">Page One</h1>
+      <h1 className="page-heading">Page Three</h1>
       <p className="page-description">
         This page is reserved for additional functionality. More features can be added here in the future.
       </p>
@@ -13,4 +13,4 @@ function PageOne() {
   );
 }
 
-export default PageOne;
+export default PageThree;
