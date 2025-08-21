@@ -1,5 +1,7 @@
 # Add PORT=3141 to .env
 
+## Run backend [here](https://github.com/nazar-ospanov/sfhacks_backend)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
